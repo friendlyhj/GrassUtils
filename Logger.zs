@@ -1,19 +1,19 @@
 #priority 32768
 
-static loggerID as string = "[" ~ "GrassUtils" ~ "]" ~ " ";
+static LOGGER_ID as string = "[" ~ "GrassUtils" ~ "]" ~ " ";
 
 function sendInfo(message as string) {
-    print(loggerID ~ message);
+    print(LOGGER_ID ~ message);
 }
 
 function sendWarning(message as string) {
-    logger.logWarning(loggerID ~ message);
+    logger.logWarning(LOGGER_ID ~ message);
 }
 
 function sendCommand(message as string) {
-    logger.logCommand(loggerID ~ message);
+    logger.logCommand(LOGGER_ID ~ message);
 }
 
 function sendError(message as string) {
-    logger.logError(loggerID ~ message);
+    logger.logError(LOGGER_ID ~ message);
 }

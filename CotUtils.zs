@@ -18,6 +18,7 @@ static enumRarityLevel as string[] = ["COMMON", "UNCOMMON", "RARE", "EPIC"];
 static tab as CreativeTab = null;
 
 function addNormalItem(name as string) {
+    Logger.sendInfo("Adding item " ~ name);
     var itemt as Item = VanillaFactory.createItem(name);
     if (!isNull(tab)){
         itemt.creativeTab = tab;
@@ -26,6 +27,7 @@ function addNormalItem(name as string) {
 }
 
 function addRareItem(name as string, glow as bool, rarityLevel as int) {
+    Logger.sendInfo("Adding rare item " ~ name);
     var itemt as Item = VanillaFactory.createItem(name);
     itemt.glowing = glow; 
     itemt.rarity = enumRarityLevel[rarityLevel];
@@ -36,6 +38,7 @@ function addRareItem(name as string, glow as bool, rarityLevel as int) {
 }
 
 function addFluid(name as string,color as int,temperature as int,viscosity as int,density as int,luminosity as int,isLava as bool){
+    Logger.sendInfo("Adding fluid " ~ name);
     var fluidt as Fluid = VanillaFactory.createFluid(name, color);
     fluidt.temperature = temperature; //default 300
     fluidt.viscosity = viscosity; //default 1000
@@ -54,6 +57,7 @@ function addFluid(name as string,color as int,temperature as int,viscosity as in
 }
 
 function addBlock(name as string,blockMaterial as BlockMaterial,hardness as float,resistance as float,blockSoundType as SoundType,lightValue as int,gravity as bool,toolClass as string,toolLevel as int){
+    Logger.sendInfo("Adding block " ~ name);
     var blockt as Block = VanillaFactory.createBlock(name,blockMaterial);
     blockt.setBlockHardness(hardness);
     blockt.setBlockResistance(resistance);
@@ -69,6 +73,7 @@ function addBlock(name as string,blockMaterial as BlockMaterial,hardness as floa
 }
 
 function addCreativeTabAndNormalItem(creativeTabID as string, itemID as string) {
+    Logger.sendInfo("Adding creative tab " ~ creativeTabID ~ " with item " ~ itemID);
     var item as Item = VanillaFactory.createItem(itemID);
     var creativetab as CreativeTab = VanillaFactory.createCreativeTab(creativeTabID, item);
     creativetab.register();
