@@ -21,6 +21,7 @@ zenClass MaterialSystemHelper {
     var partList as Part[string] = {};
     
     function registerMaterial(name as string,color as int) as Material {
+        Logger.sendInfo("Registering material " ~ name);
         val id as string = StringHelper.toUpperCamelCase(name);
         var material as Material = MaterialSystem.getMaterialBuilder().setName(id).setColor(color).build();
         this.materialList[id] = material;
@@ -35,7 +36,19 @@ zenClass MaterialSystemHelper {
         return MaterialSystem.getMaterials();
     }
 
+    function addPart(partID as string) as string {
+        for key, value in this.getAllParts() {
+            if (key == partID) {
+                this.partList[partID] = value;
+                return partID;
+            }
+        }
+        Logger.sendWarning("Not find part " ~ partID);
+        return partID;
+    }
+
     function registerNormalPart(name as string, type as string, hasOverlay as bool) as Part {
+        Logger.sendInfo("Registering normal part " ~ name);
         val id as string = StringHelper.toSnakeCase(name);
         val oreDictID as string = StringHelper.toLowerCamelCase(name);
         var part as Part = MaterialSystem.getPartBuilder().setName(id).setPartType(MaterialSystem.getPartType(type)).setHasOverlay(hasOverlay).setOreDictName(oreDictID).build();
@@ -45,6 +58,7 @@ zenClass MaterialSystemHelper {
 
     function registerSpecialPart(name as string, hasOverlay as bool, fx as RegisterMaterialPart) as Part {
         // TODO
+        Logger.sendWarning("Registering special part is NOT supported.");
         return null;
     }
 
@@ -56,21 +70,24 @@ zenClass MaterialSystemHelper {
         return MaterialSystem.getParts();
     }
 
-    function registerAMaterialPart(materialID as string, partID as string) /* as MaterialPart */{
+    function registerMaterialPart(materialID as string, partID as string) /* as MaterialPart */{
+        Logger.sendInfo("Registering material part: " ~ materialID ~ "_" ~ partID);
         /* return */this.partList[partID].registerToMaterial(this.materialList[materialID]);
     }
 
-    function registerMaterialPartByPart(partID as string) /* as MaterialPart[] */{
+    function registerMaterialPartsByPart(partID as string) /* as MaterialPart[] */{
+        Logger.sendInfo("Registering material parts: " ~ "any_" ~ partID);
         /* return */ this.partList[partID].registerToMaterials(this.materialList.values);
     }
 
-    function registerMaterialPartByMaterial(materialID as string) /* as MaterialPart[] */{
+    function registerMaterialPartsByMaterial(materialID as string) /* as MaterialPart[] */{
+        Logger.sendInfo("Registering material parts: " ~ materialID ~ "_any");
         /* return */ this.materialList[materialID].registerParts(this.partList.values);
     }
 
     function registerAllMaterialParts() {
         for key in partList {
-            this.registerMaterialPartByPart(key);
+            this.registerMaterialPartsByPart(key);
         }
     }
 }
