@@ -33,3 +33,8 @@ function getOffset(pos as BlockPos, x as int, y as int, z as int) as BlockPos{
 function spawnItem(world as IWorld, item as IItemStack, pos as IBlockPos) as bool{
     return world.spawnEntity(item.createEntityItem(world, pos));
 }
+
+function secondsTicker(world as IWorld, seconds as float) as bool {
+    val ticks as int = 20 * seconds;
+    return world.time % ticks == 0;
+}

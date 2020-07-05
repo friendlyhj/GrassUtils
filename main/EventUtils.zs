@@ -9,6 +9,7 @@ import mods.ctutils.player.Player;
 import scripts.grassUtils.Logger;
 import crafttweaker.event.PlayerTickEvent;
 import crafttweaker.event.PlayerRespawnEvent;
+import mods.ctutils.utils.Math;
 
 static storageData as IData[string] = {};
 
@@ -71,4 +72,9 @@ function defaultDataHandler(data as IData, player as IPlayer) as bool {
         return true;
     }
     return false;
+}
+
+function secondsTicker(world as IWorld, seconds as float) as bool {
+    val ticks as int = 20 * seconds;
+    return world.time % ticks == 0;
 }
