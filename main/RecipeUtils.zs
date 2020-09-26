@@ -47,6 +47,12 @@ function createCross(five as IIngredient, four as IIngredient) as IIngredient[][
     [five, four, five]];
 }
 
+function createCrossWithCore(core as IIngredient, a as IIngredient, b as IIngredient) as IIngredient[][] {
+    return [[a, b, a],
+    [b, core, b],
+    [a, b, a]];
+}
+
 //删除工作台与熔炉合成，并在JEI内隐藏
 function removeAllRecipe(input as IItemStack) as bool {
     recipes.remove(input);

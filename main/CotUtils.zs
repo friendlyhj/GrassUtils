@@ -46,8 +46,8 @@ function addFluid(name as string,color as int,temperature as int,viscosity as in
     fluidt.luminosity = luminosity; //default 0
     if (isLava) {
         fluidt.material = <blockmaterial:lava>;
-        fluidt.stillLocation = "contenttweaker:fluids/lava_still";
-        fluidt.flowingLocation = "contenttweaker:fluids/lava_flow";
+        fluidt.stillLocation = "base:fluids/molten";
+        fluidt.flowingLocation = "base:fluids/molten_flowing";
     } else {
         fluidt.material = <blockmaterial:water>;
         fluidt.stillLocation = "base:fluids/liquid";
@@ -82,6 +82,6 @@ function addCreativeTabAndNormalItem(creativeTabID as string, itemID as string) 
     tab = creativetab;
 }
 
-function getMaterialSystemHelper() as MaterialSystemHelper {
-    return MaterialSystemHelper();
+function getMaterialSystemHelper(id as int) as MaterialSystemHelper {
+    return MaterialSystemHelper(id);
 }
