@@ -4,6 +4,7 @@ import crafttweaker.item.IItemStack;
 import crafttweaker.item.IIngredient;
 import crafttweaker.data.IData;
 import crafttweaker.oredict.IOreDictEntry;
+import crafttweaker.recipes.ICraftingRecipe;
 import scripts.grassUtils.StringHelper;
 import scripts.grassUtils.classes.ConditionedItemStack.ConditionedItemStack;
 
@@ -51,6 +52,11 @@ function createCrossWithCore(core as IIngredient, a as IIngredient, b as IIngred
     return [[a, b, a],
     [b, core, b],
     [a, b, a]];
+}
+
+// 删除 ICraftingRecipe
+function remove(recipe as ICraftingRecipe) {
+    recipes.removeByRecipeName(recipe.fullResourceDomain);
 }
 
 //删除工作台与熔炉合成，并在JEI内隐藏
