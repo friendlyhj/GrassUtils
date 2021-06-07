@@ -15,29 +15,41 @@ import scripts.grassUtils.StringHelperCot as StringHelper;
 import scripts.grassUtils.LoggerCot as Logger;
 
 zenClass MaterialSystemHelper {
-    zenConstructor(arg as int) {
+    zenConstructor(arg as string) {
         this.id = arg;
     }
     var materialList as Material[string] = {};
     var partList as string[] = [];
-    val id as int;
+    val id as string;
 
     function getLogID() as string {
         return "Material System Helper " ~ this.id ~ ": ";
     }
     
     function registerMaterial(name as string, color as int) as Material {
-        Logger.sendInfo(this.getLogID() ~ "Registering material " ~ name);
         val id as string = StringHelper.toUpperCamelCase(name);
-        var material as Material = MaterialSystem.getMaterialBuilder().setName(id).setColor(color).build();
+        var material as Material = null;
+        if (this.hasMaterial(id)) {
+            print(toString(material));
+            Logger.sendInfo(this.getLogID() ~ "Found Material " ~ name ~ " is already registered! Skip registering.");
+            material = MaterialSystem.getMaterial(id);
+            this.materialList[id] = material;
+            return material;
+        }
+        Logger.sendInfo(this.getLogID() ~ "Registering material " ~ name);
+        material = MaterialSystem.getMaterialBuilder().setName(id).setColor(color).build();
         this.materialList[id] = material;
         return material;
     }
 
+    function hasMaterial(key as string) as bool {
+        return this.getAllMaterials().keys has key;
+    }
+
     function getMaterial(key as string) as Material {
-        val material as Material = MaterialSystem.getMaterial(key);
-        if (isNull(material)) Logger.sendError(this.getLogID() ~ "cannot find material: " ~ key);
-        return material;
+        val id as string = StringHelper.toUpperCamelCase(key);
+        if (!this.hasMaterial(id)) Logger.sendError(this.getLogID() ~ "cannot find material: " ~ key);
+        return MaterialSystem.getMaterial(key);
     }
 
     function getAllMaterials() as Material[string] {
@@ -45,9 +57,10 @@ zenClass MaterialSystemHelper {
     }
     
     function addMaterial(key as string) as Material {
+        val id as string = StringHelper.toUpperCamelCase(key);
         Logger.sendInfo(this.getLogID() ~ "Add registered material " ~ key);
-        this.materialList[key] = this.getMaterial(key);
-        return this.getMaterial(key);
+        this.materialList[id] = this.getMaterial(id);
+        return this.getMaterial(id);
     }
 
     function addPart(partID as string) as string {
