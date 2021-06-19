@@ -54,6 +54,18 @@ function createCrossWithCore(core as IIngredient, a as IIngredient, b as IIngred
     [a, b, a]];
 }
 
+function createLeftSlash(input as IIngredient) as IIngredient[][] {
+    return [[input, null, null,],
+    [null, input, null],
+    [null, null, input]];
+}
+
+function createRightSlash(input as IIngredient) as IIngredient[][] {
+    return [[null, null, input],
+    [null, input, null],
+    [input, null, null]];
+}
+
 // 删除 ICraftingRecipe
 function remove(recipe as ICraftingRecipe) {
     recipes.removeByRecipeName(recipe.fullResourceDomain);
