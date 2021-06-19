@@ -55,7 +55,7 @@ function createCrossWithCore(core as IIngredient, a as IIngredient, b as IIngred
 }
 
 function createLeftSlash(input as IIngredient) as IIngredient[][] {
-    return [[input, null, null,],
+    return [[input, null, null],
     [null, input, null],
     [null, null, input]];
 }
