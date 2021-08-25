@@ -8,4 +8,6 @@ A bunch of utils to make crafttweaker and contenttweaker easy to use.(MC 1.12.2)
 
 [Crafttweaker Utils](https://www.curseforge.com/minecraft/mc-mods/crafttweaker-utils)
 
+[ZenUtils](https://www.curseforge.com/minecraft/mc-mods/zenutil)
+
 [Contenttweaker](https://www.curseforge.com/minecraft/mc-mods/contenttweaker)(Optional 可选)
