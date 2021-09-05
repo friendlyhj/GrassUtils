@@ -2,11 +2,16 @@
 #priority 32767
 
 import crafttweaker.item.IItemStack;
+import crafttweaker.liquid.ILiquidStack;
 
 function getItemName(input as IItemStack) as string {
     val id as string = input.definition.id;
     val meta as int = input.metadata;
     return (meta == 0) ? id : (id ~ meta);
+}
+
+function getLiquidName(input as ILiquidStack) as string {
+    return input.definition.name;
 }
 
 function getItemNameWithUnderline(input as IItemStack) as string {
