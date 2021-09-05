@@ -7,7 +7,7 @@ import crafttweaker.liquid.ILiquidStack;
 function getItemName(input as IItemStack) as string {
     val id as string = input.definition.id;
     val meta as int = input.metadata;
-    return id ~ ":" ~ meta;
+    return (meta == 0) ? id : (id ~ meta);
 }
 
 function getLiquidName(input as ILiquidStack) as string {
