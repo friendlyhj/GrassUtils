@@ -12,7 +12,6 @@ function getItemName(input as IItemStack) as string {
 
 function getLiquidName(input as ILiquidStack) as string {
     return input.definition.name;
-    return id;
 }
 
 function getItemNameWithUnderline(input as IItemStack) as string {
