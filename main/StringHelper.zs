@@ -11,7 +11,7 @@ function getItemName(input as IItemStack) as string {
 }
 
 function getLiquidName(input as ILiquidStack) as string {
-    var id as string = input.definition.name;
+    return input.definition.name;
     return id;
 }
 
