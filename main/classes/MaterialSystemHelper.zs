@@ -30,7 +30,6 @@ zenClass MaterialSystemHelper {
         val id as string = StringHelper.toUpperCamelCase(name);
         var material as Material = null;
         if (this.hasMaterial(id)) {
-            print(toString(material));
             Logger.sendInfo(this.getLogID() ~ "Found Material " ~ name ~ " is already registered! Skip registering.");
             material = MaterialSystem.getMaterial(id);
             this.materialList[id] = material;
